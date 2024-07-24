@@ -13,14 +13,14 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100">
+        <div class="bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
+                <div class="">
+                    <div class="flex justify-between sticky" style="height: 10vh; ">
+                        <div class="flex w-1/6 bg-red-500">
                             <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
+                            <div class="shrink-0 flex items-center mx-auto">
                                 <Link :href="route('dashboard')">
                                     <ApplicationLogo
                                         class="block h-9 w-auto fill-current text-gray-800"
@@ -145,8 +145,8 @@ const showingNavigationDropdown = ref(false);
             <!-- Page Content -->
             <main>
                 <div class="w-full">
-                    <div class="bg-white flex">
-                        <div class="w-1/6">
+                    <div class="bg-white flex justify-start">
+                        <div class="w-1/6 bg-gray-800 text-white">
                             <Sidebar />
                         </div>
                         <div class="w-5/6 p-5">
