@@ -153,7 +153,7 @@ return [
             'confirm' => true,
             'confirmPassword' => true,
             // 'window' => 0,
-        ]),zs   c44Q */
+        ]),*/
     ],
 
 ];
