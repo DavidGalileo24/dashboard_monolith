@@ -16,10 +16,7 @@ const showingNavigationDropdown = ref(false);
         <div class="bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div
-                    class="flex justify-between bg-teal-500"
-                    style="height: 10vh"
-                >
+                <div class="flex justify-between" style="height: 10vh">
                     <div class="flex w-1/6">
                         <!-- Logo -->
                         <div class="shrink-0 flex items-center mx-auto">
