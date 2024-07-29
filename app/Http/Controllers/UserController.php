@@ -37,7 +37,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $data->assignRole($request->role);
+        $data->assignRole($request->role_id);
         return response()->json(['message' => 'Stored']);
     }
 
@@ -68,7 +68,7 @@ class UserController extends Controller
         
         $user->update(['name' => $request->name, 'email' => $request->email, 'password' => $pass]);
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
-        $user->assignRole($request->role);
+        $user->assignRole($request->role_id);
 
         return response()->json(['message' => 'Updated']);
     }

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Http\Resources\RoleResource;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -12,7 +13,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $data = Role::orderBy('id', 'desc')->get();
+        return RoleResource::collection($data);
     }
 
     /**
@@ -28,7 +30,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Role::create([
+            'name' => $request->name,
+        ]);
+        //$data->syncPermissions($request->permission_id);
+        return response()->json(['message' => 'Stored']);
     }
 
     /**
@@ -36,7 +42,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return RoleResource::make($role);
     }
 
     /**
@@ -52,7 +58,10 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $role->update([
+            'name' => $request->name,
+        ]);
+        return response()->json(['message' => 'Updated']);
     }
 
     /**
@@ -60,6 +69,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        return $role->delete();
+        return response()->json(['message' => 'Deleted']);
     }
 }
