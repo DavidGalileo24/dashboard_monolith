@@ -4,7 +4,7 @@ import NavLink from './NavLink.vue';
 </script>
 <template>
     <div class="relative min-h-screen">
-        <div class="sidebarItems mt-10">
+        <div class="sidebarItems mt-5">
             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                 <font-awesome-icon :icon="['fas', 'house']" class="linkItem" />Inicio
             </NavLink>
