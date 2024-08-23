@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -16,8 +17,9 @@ class UserController extends Controller
     public function index()
     {
         $data = User::orderBy('id', 'desc')->get();
+
         return Inertia::render('User/Index', [
-            'users' => UserResource::collection($data)
+            'users' => UserResource::collection($data),
         ]);
     }
 
@@ -40,6 +42,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
         $data->assignRole($request->role_id);
+
         return response()->json(['message' => 'Stored']);
     }
 
@@ -65,9 +68,12 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $pass = '';
-        if(!empty($request->password)){ $pass = Hash::make($request->password); } 
-        else { $pass = $user->password; }
-        
+        if (! empty($request->password)) {
+            $pass = Hash::make($request->password);
+        } else {
+            $pass = $user->password;
+        }
+
         $user->update(['name' => $request->name, 'email' => $request->email, 'password' => $pass]);
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
         $user->assignRole($request->role_id);
@@ -81,6 +87,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return response()->json(['message' => 'Deleted']);
     }
 }

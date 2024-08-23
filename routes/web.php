@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,10 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //users
-    Route::resource('/users', UserController::class)->names(['index'=>'users','store'=>'users.store','update'=>'users.update','delete'=>'users.delete']);
+    Route::resource('/users', UserController::class)->names(['index' => 'users', 'store' => 'users.store', 'update' => 'users.update', 'delete' => 'users.delete']);
 
     //Roles
-    Route::resource('/roles', RoleController::class)->names(['index'=>'roles','store'=>'roles.store','update'=>'roles.update','delete'=>'roles.delete']);
+    Route::resource('/roles', RoleController::class)->names(['index' => 'roles', 'store' => 'roles.store', 'update' => 'roles.update', 'delete' => 'roles.delete']);
 
 });
 

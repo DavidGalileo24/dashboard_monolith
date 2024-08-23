@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\RoleResource;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class RoleController extends Controller
 {
@@ -14,7 +15,9 @@ class RoleController extends Controller
     public function index()
     {
         $data = Role::orderBy('id', 'desc')->get();
-        return RoleResource::collection($data);
+        return Inertia::render('Role/Index', [
+            'roles' => RoleResource::collection($data)
+        ]);
     }
 
     /**
@@ -33,9 +36,7 @@ class RoleController extends Controller
         $data = Role::create([
             'name' => $request->name,
         ]);
-        return Inertia::render('Role/Index', [
-            'roles' => RoleResource::collection($data)
-        ]);
+        return response()->json(['message' => 'Stored']);
     }
 
     /**
