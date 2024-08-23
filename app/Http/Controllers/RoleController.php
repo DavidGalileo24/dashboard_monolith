@@ -33,8 +33,9 @@ class RoleController extends Controller
         $data = Role::create([
             'name' => $request->name,
         ]);
-        //$data->syncPermissions($request->permission_id);
-        return response()->json(['message' => 'Stored']);
+        return Inertia::render('Role/Index', [
+            'roles' => RoleResource::collection($data)
+        ]);
     }
 
     /**

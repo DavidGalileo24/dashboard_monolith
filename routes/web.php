@@ -8,28 +8,24 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('Auth/Login');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //Roles
-    Route::resource('roles', RoleController::class);
-
     //users
-    Route::resource('users', UserController::class);
+    Route::resource('/users', UserController::class)->names(['index'=>'users','store'=>'users.store','update'=>'users.update','delete'=>'users.delete']);
+
+    //Roles
+    Route::resource('/roles', RoleController::class)->names(['index'=>'roles','store'=>'roles.store','update'=>'roles.update','delete'=>'roles.delete']);
+
 });
 
 require __DIR__.'/auth.php';

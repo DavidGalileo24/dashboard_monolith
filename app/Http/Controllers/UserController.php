@@ -16,7 +16,9 @@ class UserController extends Controller
     public function index()
     {
         $data = User::orderBy('id', 'desc')->get();
-        return UserResource::collection($data);
+        return Inertia::render('User/Index', [
+            'users' => UserResource::collection($data)
+        ]);
     }
 
     /**
