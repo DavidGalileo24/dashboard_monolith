@@ -14,13 +14,13 @@ const props = defineProps({
 
 const classes = computed(() =>
     props.active
-        ? 'w-full block p-2 mt-2 border-l-4 border-yellow-600 bg-yellow-500 text-md font-medium text-yellow-900 hover:bg-yellow-500 transition duration-150 ease-in-out'
-        : 'w-full block p-2 border-transparent text-md font-medium hover:bg-yellow-900 transition duration-150 ease-in-out'
+        ? 'w-full block p-2 border-l-4 border-teal-600 text-gray-900 bg-teal-500 text-md font-medium text-teal-900 hover:bg-teal-500 transition duration-150 ease-in-out'
+        : 'w-full block p-2 text-white border-transparent text-md font-medium hover:bg-teal-900 transition duration-150 ease-in-out'
 );
 </script>
 
 <template>
     <Link :href="href" :class="classes">
-        <slot />
+    <slot />
     </Link>
 </template>

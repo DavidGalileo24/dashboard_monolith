@@ -3,7 +3,7 @@ import NavLink from './NavLink.vue';
 
 </script>
 <template>
-    <div class="mt-5 min-h-screen">
+    <div class="mt-5">
         <div class="">
             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                 <font-awesome-icon :icon="['fas', 'house']" class="linkItem" />Inicio
